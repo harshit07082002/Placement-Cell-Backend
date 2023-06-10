@@ -39,7 +39,7 @@ exports.applyJob = catchAsync(async (req, res, next) => {
     return next(new apiError('You have already registered for this job', 403));
   }
   job.applied.push({enrollment_no: enrollmentNo, name: data.name, status: 'Under Review'});
-  data.companies.push({name: job.company, jobid: job.job_id, status: 'Under Review'});
+  data.companies.push({name: job.company, jobid: job.job_id, status: 'Under Review', ctc: job.package});
   await Student.updateOne({enrollmentNo}, data, {
     new: true,
     runValidators: true,

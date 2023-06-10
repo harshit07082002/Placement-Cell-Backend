@@ -5,7 +5,8 @@ const bcrypt = require('bcrypt');
 const companiesSchema = new mongoose.Schema({
   name: String,
   jobid: String,
-  status: String
+  status: String,
+  ctc: Number
 })
 
 const studentSchema = new mongoose.Schema({
