@@ -1,6 +1,7 @@
 const catchAsync = require('./catchAsync');
 const authController = require('./authController');
 const Job = require('../models/jobModel');
+const Student = require('../models/studentModel');
 
 const filter = (job, query) => {
   if (job.company.includes(query) || job.job_id.includes(query) || job.package === query
@@ -20,6 +21,17 @@ exports.getSpecificJob = catchAsync(async (req, res, next) => {
     res.status(200).json({
       status: 'success',
       data: jobs,
+    });
+});
+exports.getJobsWithID = catchAsync(async (req, res, next) => {
+  const data = await Student.findById(req.body.id);
+  console.log(data);
+  if (!data) {
+    return next(new apiError('Invalid Enrollment No', 403));
+  }
+  res.status(200).json({
+      status: 'success',
+      data,
     });
 });
 

@@ -18,5 +18,6 @@ jobRouter.route('/id/:id')
     );
 jobRouter.route('/scgpa/:id').get(authController.checkLogin, jobController.filterSCGPA);
 jobRouter.route('/:query').get(authController.checkLogin, jobController.getJobs);
+jobRouter.route('/appliedJob').post(authController.checkLogin, jobController.getJobsWithID);
 
 module.exports = jobRouter;

@@ -15,6 +15,16 @@ exports.updateStudent = catchAsync(async (req, res, next) => {
   });
 })
 
+exports.getDetails = (catchAsync(async (req, res, next) => {
+  const a= req.body;
+  console.log(a);
+    const data = await Student.findById(req.body.id);
+    res.status(200).json({
+      status: 'success',
+      admin: data,
+    });
+}));
+
 exports.applyJob = catchAsync(async (req, res, next) => {
   const enrollmentNo = req.body.enrollmentNo, job_id = req.body.job_id;
   console.log(req.body);
